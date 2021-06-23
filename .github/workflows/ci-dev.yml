@@ -117,6 +117,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service:  ${{ secrets.APP_NAME }}-dev-service
-          cluster: oandb-dev
+        service: hcms-user-service
+        cluster: hcms-pa-backend-dev-cluster
           wait-for-service-stability: true
