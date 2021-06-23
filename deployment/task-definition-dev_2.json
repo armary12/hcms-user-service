@@ -1,0 +1,100 @@
+{
+    "family": "hcms-user-dev",
+    "executionRoleArn": "arn:aws:iam::681053348244:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::681053348244:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "hcms-user-dev",
+            "image": "681053348244.dkr.ecr.ap-southeast-1.amazonaws.com/hcms-user-dev:latest",
+            "portMappings": [
+                {
+                    "containerPort": 5001,
+                    "hostPort": 5001,
+                    "protocol": "tcp"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "hcms-user-dev",
+                    "awslogs-region": "ap-southeast-1",
+                    "awslogs-stream-prefix": "hcms-user-dev"
+                }
+            },
+            "essential": true,
+            "environment": [
+                {
+                    "name": "NODE_ENV",
+                    "value": "dev"
+                },
+                {
+                    "name": "APP_NAME",
+                    "value": "hcms-user"
+                },
+                {
+                    "name": "PORT",
+                    "value": "5001"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "hcms2019-dev.cnjewqck1dde.ap-southeast-1.rds.amazonaws.com"
+                },
+                {
+                    "name": "DB_PORT",
+                    "value": "5432"
+                },
+                {
+                    "name": "DB_DBUSER",
+                    "value": "postgres"
+                },
+                {
+                    "name": "DB_PASSWORD",
+                    "value": "mynVgtEXI6iZbS4PvSIi"
+                },
+                {
+                    "name": "DB_NAME",
+                    "value": "postgres"
+                },
+                {
+                    "name": "AWS_REGION",
+                    "value": "ap-southeast-1"
+                },
+                {
+                    "name": "CORS",
+                    "value": "http://dverzxi4oa19m.cloudfront.net/"
+                },
+                {
+                    "name": "DB_SSL",
+                    "value": "false"
+                },
+                {
+                    "name": "MODULE",
+                    "value": "user"
+                },
+                
+                {
+                    "name": "JWT_SECRET",
+                    "value": "this858isasecret!"
+                },
+                {
+                    "name": "JWT_REFRESH_TOKEN_SECRET",
+                    "value": "this858isasecretrefreshtoken!"
+                },
+                {
+                    "name": "PUBLIC_KEY",
+                    "value": "thisispublickey!"
+                },
+                {
+                    "name": "PRIVATE_KEY",
+                    "value": "thisisprivatekey!"
+                }
+            ]
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+}
