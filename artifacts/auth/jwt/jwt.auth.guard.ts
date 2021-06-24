@@ -32,7 +32,7 @@ export class JWTAuthGuard extends AuthGuard('jwt_strategy') {
     if (
       err ||
       !user ||
-      !user.userId ||
+      // !user.userId ||
       !user.username ||
       !user.token_type ||
       user.token_type !== 'public'
