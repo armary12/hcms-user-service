@@ -11,7 +11,17 @@ export class UserService extends UserServiceAdapter {
   }
 
   async getUser(): Promise<Array<Model>> {
-    const users = await this.userRepository.findAll();
+    const users = await this.userRepository.findAll({
+      attributes: [
+        'username',
+        'name',
+        'firstName',
+        'middleName',
+        'lastName',
+        'email',
+        'type',
+      ],
+    });
     return users;
   }
 
@@ -60,6 +70,7 @@ export class UserService extends UserServiceAdapter {
 
   async updateUser(userDTO: UserDTO): Promise<[number, Model[]]> {
     userDTO.updatedDate = new Date();
+    userDTO.password = await this.encryptPassword(userDTO.password);
 
     const user = await this.userRepository.update(userDTO, {
       where: {

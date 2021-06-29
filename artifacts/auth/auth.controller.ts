@@ -44,8 +44,6 @@ export class AuthController {
     return this.jwtRefreshTokenAuthService.refreshToken(req.user);
   }
 
-  @Public()
-  @UseGuards(JWTRefreshTokenAuthGuard)
   @Get('jwt/auth/logout')
   async jwtLogout(@Request() req) {
     return this.jwtAuthService.logout(req.user);

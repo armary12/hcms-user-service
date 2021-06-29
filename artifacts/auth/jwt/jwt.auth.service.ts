@@ -14,13 +14,13 @@ export class JWTAuthService {
   ) {}
 
   async login(userPayload: any, rememberMe: boolean, expiresIn: string) {
-    const payload = {
-      username: userPayload.username,
-      userId: userPayload.id,
-      token_type: 'public',
-    };
     const user = await this.userService.getUserByUsername(userPayload.username);
     const { password, ...result } = user;
+    const payload = {
+      username: userPayload.username,
+      userId: user.userId,
+      token_type: 'public',
+    };
 
     const expiresInJWT = {};
 
@@ -34,8 +34,7 @@ export class JWTAuthService {
       };
     }
 
-    await this.cacheManager.del(userPayload.id);
-
+    await this.cacheManager.del(user.userId.toString());
     return {
       user: result,
       access_token: this.jwtService.sign(payload, expiresInJWT),

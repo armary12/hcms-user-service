@@ -21,7 +21,7 @@ export class JWTRefreshTokenAuthGuard extends AuthGuard(
     if (
       err ||
       !user ||
-      // !user.userId ||
+      !user.userId ||
       !user.token_type ||
       user.token_type !== 'refresh'
     ) {
@@ -29,5 +29,4 @@ export class JWTRefreshTokenAuthGuard extends AuthGuard(
     }
     return user;
   }
-  
 }
