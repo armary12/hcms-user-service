@@ -13,6 +13,7 @@ export class UserService extends UserServiceAdapter {
   async getUser(): Promise<Array<Model>> {
     const users = await this.userRepository.findAll({
       attributes: [
+        'userId',
         'username',
         'name',
         'firstName',
@@ -28,6 +29,7 @@ export class UserService extends UserServiceAdapter {
   async getUserById(id: number): Promise<UserDTO> {
     const user = await this.userRepository.findOne({
       attributes: [
+        'userId',
         'username',
         'name',
         'firstName',
