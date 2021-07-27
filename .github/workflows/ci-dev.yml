@@ -80,10 +80,10 @@ jobs:
           CORS: ${{ secrets.DEV_FRONT_URL }}
           MODULE: ${{ secrets.MODULE }}
           HOST_PORT: ${{ secrets.HOST_PORT }}
-          JWT_SECRET: this858isasecret!
-          JWT_REFRESH_TOKEN_SECRET: this858isasecretrefreshtoken!
-          PUBLIC_KEY: thisispublickey!
-          PRIVATE_KEY: thisisprivatekey!
+          JWT_SECRET: thisisatestjwtsecret!
+          JWT_REFRESH_TOKEN_SECRET: thisisatestrefreshtoken!
+          PUBLIC_KEY: thisisatestpublickey!
+          PRIVATE_KEY: thisisatestprivatekey!
 
         run: |
           sed -i "s|{{app_name}}|$APP_NAME|g" deployment/task-definition-dev.json 
@@ -117,6 +117,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: hcms-user-dev-service
-          cluster: hcms-pa-backend-dev-cluster
+          service: hcms2019-user-dev-service
+          cluster: hcms2019-dev-cluster
           wait-for-service-stability: true

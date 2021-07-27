@@ -1,5 +1,5 @@
 {
-    "family": "{{app_name}}-dev",
+    "family": "hcms2019-user-dev",
     "executionRoleArn": "arn:aws:iam::{{aws_account_id}}:role/ecsTaskExecutionRole",
     "taskRoleArn": "arn:aws:iam::{{aws_account_id}}:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
